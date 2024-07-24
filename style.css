@@ -11,7 +11,7 @@ body {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 50vw;
 }
 
@@ -26,7 +26,7 @@ form * {
 }
 
 input[type="text"] {
-  flex: 1;
+  flex-grow: 1;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -47,7 +47,7 @@ button:hover {
 }
 
 section {
-  max-height: 400px;
+  max-height: 70vh;
   overflow-y: auto;
 }
 
