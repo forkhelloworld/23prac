@@ -13,7 +13,6 @@
 Стилістично оформити власним за смаком.
 */
 
-
 const buttonAdd = document.querySelector("#addTask");
 buttonAdd.addEventListener("click", addTask);
 
@@ -24,19 +23,19 @@ function addTask(event) {
   const text = inputTask.value;
 
   if (text) {
-    updateTasks();
+    updateTasks(text);
   } else {
     alert("Task cannot be empty");
   }
 }
 
-function updateTasks() {
+function updateTasks(text) {
   const tasks = document.querySelector("#tasks");
   const task = document.createElement("li");
   const deleteButton = document.createElement("button");
 
   task.textContent = text;
-  deleteButton.textContent = "X";
+  deleteButton.textContent = "x";
   deleteButton.addEventListener("click", deleteTask);
 
   task.append(deleteButton);
