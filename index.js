@@ -14,34 +14,58 @@
 */
 
 const buttonAdd = document.querySelector("#addTask");
-buttonAdd.addEventListener("click", addTask);
+buttonAdd.addEventListener("click", updateView);
+let taskList = [];
+let liArray = [];
 
-function addTask(event) {
+function updateView(event) {
   event.preventDefault();
-
   const inputTask = document.querySelector("input");
   const text = inputTask.value;
+  inputTask.value = "";
+
+  taskList.push(text);
 
   if (text) {
-    updateTasks(text);
+    updateTasks(taskList);
   } else {
     alert("Task cannot be empty");
   }
 }
 
-function updateTasks(text) {
+function createTasks(taskList) {
+  liArray = [];
+  let id = 1;
+  for (text of taskList) {
+    const task = document.createElement("li");
+    const deleteButton = document.createElement("button");
+
+    task.dataset.id = id;
+    task.textContent = text;
+    deleteButton.textContent = "x";
+    deleteButton.addEventListener("click", deleteTask);
+    task.append(deleteButton);
+    liArray.push(task);
+    id++;
+  }
+  return liArray;
+}
+
+function updateTasks(taskList) {
+  const liArray = createTasks(taskList);
   const tasks = document.querySelector("#tasks");
-  const task = document.createElement("li");
-  const deleteButton = document.createElement("button");
-
-  task.textContent = text;
-  deleteButton.textContent = "x";
-  deleteButton.addEventListener("click", deleteTask);
-
-  task.append(deleteButton);
-  tasks.append(task);
+  tasks.replaceChildren(...liArray);
 }
 
 function deleteTask(event) {
-  event.target.parentNode.remove();
+  elementId = event.target.parentNode.dataset.id;
+  for (task of liArray) {
+    if (task.dataset.id == elementId) {
+      taskList.splice(elementId - 1, 1);
+  
+      break;
+    }
+  }
+
+  updateTasks(taskList);
 }
